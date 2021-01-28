@@ -46,7 +46,7 @@ function calculateTotalAmount() {
     const subtotalAmount = phoneAmount  + coverAmount ;
     document.getElementById('subtotal-amount').innerText = subtotalAmount;
     
-    const texAmount = subtotalAmount * .05;
+    const texAmount = subtotalAmount * .05;// for 5% tex 
     document.getElementById('tex-amount').innerText = Math.round(texAmount);
 
     const totalAmount = subtotalAmount + texAmount;
