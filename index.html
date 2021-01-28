@@ -25,9 +25,12 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="iphone-decrement-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input onkeyup="inputItemCalculate(event)" id="iphone-items-count" type="text" class="form-control text-center" value="1">
-                           <button id="iphone-increment-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handelProductChange('phone', false)" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
+                           <input onkeyup="inputItemCalculate(event)" id="phone-items-count" type="text"
+                              class="form-control text-center" value="01">
+                           <button onclick="handelProductChange('phone', true)" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
                         </div>
                         <h5>$<span id="phone-price">1219</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +46,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="cover-decrement-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input onkeyup="inputItemCalculate(event)" id="cover-items-count" type="text" class="form-control text-center" value="1">
-                           <button id="cover-increment-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handelProductChange('cover', false)" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
+                           <input onkeyup="inputItemCalculate(event)" id="cover-items-count" type="text"
+                              class="form-control text-center" value="01">
+                           <button onclick="handelProductChange('cover', true)" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$<span id="cover-price">59</span></h5>
@@ -66,7 +72,7 @@
                      <div class="col-md-4 status">
                         <h5>$<span id="subtotal-amount">1,278</span></h5>
                         <h5>$<span id="tex-amount">64</span></h5>
-                        <h5>$<span id="total-amount">1,278</span></h5>
+                        <h5>$<span id="total-amount">1,342</span></h5>
                      </div>
                   </div>
                </div>

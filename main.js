@@ -1,81 +1,63 @@
-// iphone  increment decrement function call
-//function(button id, count element id, phone price element id, pass per prise, set index for items );
-incrementHandler('iphone-increment-btn', 'iphone-items-count', 'phone-price', 1219, 0);
-decrementHandler('iphone-decrement-btn', 'iphone-items-count', 'phone-price', 1219, 0);
-
-// cover increment decrement function call
-//arguments(button id, count element id, phone price element id, pass per prise, set index for items );
-incrementHandler('cover-increment-btn', 'cover-items-count', 'cover-price', 59, 1);
-decrementHandler('cover-decrement-btn', 'cover-items-count', 'cover-price', 59, 1);
-
-
-//assign default value for item count with array for different items
-let count = [1, 1];
-
-// increment handler 
-function incrementHandler(btnId, countItemId, priceId, perPrice, itemId) {
-    let totalPrice = perPrice;
-    const incrementBtn = document.getElementById(btnId);
-    const countItem = document.getElementById(countItemId);
-    incrementBtn.addEventListener('click', function (event) {
-        countItem.value = ++count[itemId];
-        calculateSelfPrice(countItem, priceId, totalPrice, perPrice);
-        calculateTotalPrice();
-    })
+// handler product change
+function handelProductChange(product, isIncrease) {
+    const productInput = document.getElementById(product + '-items-count');
+    const productCount = parseInt(productInput.value);
+    let productNewCount = productCount;
+    if (isIncrease == true) {
+        productNewCount = productNewCount + 1;
+    }
+    if (isIncrease == false && productNewCount > 0) {
+        productNewCount = productNewCount - 1;
+    }
+    productInput.value = productNewCount < 10 ? '0' + productNewCount : productNewCount;
+    let totalPrice = 0;
+    if (product == 'phone') {
+        totalPrice = productNewCount * 1219;
+    } else {
+        totalPrice = productNewCount * 59;
+    }
+    document.getElementById(product + '-price').innerText = totalPrice;
+    calculateTotalAmount();
 }
 
-// decrement handler  
-function decrementHandler(btnId, countItemId, priceId, perPrice, itemId) {
-    let totalPrice = perPrice;
-    const incrementBtn = document.getElementById(btnId);
-    const countItem = document.getElementById(countItemId);
-    incrementBtn.addEventListener('click', function (event) {
-        if (count[itemId] > 0) {
-            countItem.value = --count[itemId];
-            calculateSelfPrice(countItem, priceId, totalPrice, perPrice);
-            calculateTotalPrice();
-        }
-
-    })
-}
-
-// key value set and calculate
-function inputItemCalculate(event) {
-    const countItem = event.target;
-    console.log(event.target.id);
-    if(countItem.id == 'iphone-items-count'){
-        calculateSelfPrice(countItem, 'phone-price', 1219, 1219);
+// input handler when keypress 
+function inputItemCalculate(event){
+    
+    let productCount = parseInt(event.target.value);
+    if(event.target.value == ""){
+        productCount = 0;
+        document.getElementById(event.target.id).value = 0;
+    }
+    if(event.target.id == 'phone-items-count'){
+        const phonePrice = productCount * 1219;
+        document.getElementById('phone-price').innerText = phonePrice;
     }else{
-        calculateSelfPrice(countItem, 'cover-price', 59, 59);
+        const coverPrice = productCount * 59;
+        document.getElementById('cover-price').innerText = coverPrice;
     }
-    calculateTotalPrice();
+    calculateTotalAmount();
 }
 
-//calculate self price 
-function calculateSelfPrice(countItem, priceId, totalPrice, perPrice) {
-    let countItemString = countItem.value;
-    if(countItemString == ''){
-        countItemString = '0';
-    }
-    const countItemNum = parseInt(countItemString);
-    totalPrice = perPrice * countItemNum;
-    const amount = document.getElementById(priceId);
-    amount.innerHTML = totalPrice;
+// total amount calculate
+function calculateTotalAmount() {
+    phoneAmount = getInputValue('phone-price');
+    coverAmount = getInputValue('cover-price');
+
+    const subtotalAmount = phoneAmount  + coverAmount ;
+    document.getElementById('subtotal-amount').innerText = subtotalAmount;
+    
+    const texAmount = subtotalAmount * .05;
+    document.getElementById('tex-amount').innerText = Math.round(texAmount);
+
+    const totalAmount = subtotalAmount + texAmount;
+    document.getElementById('total-amount').innerText = Math.round(totalAmount);
 }
 
-// calculate total price
-function calculateTotalPrice() {
-    const totalPhoneAmount = document.getElementById('phone-price').innerText;
-    const totalPhoneAmountNum = parseInt(totalPhoneAmount);
-
-    const totalCoverAmount = document.getElementById('cover-price').innerText;
-    const totalCoverAmountNum = parseInt(totalCoverAmount);
-
-    const subtotalAmount = totalPhoneAmountNum + totalCoverAmountNum;
-    document.getElementById('subtotal-amount').innerHTML = subtotalAmount;
-
-    const texAmount = Math.round(subtotalAmount * .05);// for 5 % tax 
-    document.getElementById('tex-amount').innerText = texAmount;
-
-    document.getElementById('total-amount').innerHTML = subtotalAmount + texAmount;
+// get input value
+function getInputValue(product) {
+    const productInput = document.getElementById(product);
+    const productAmount = parseInt(productInput.innerText);
+    return productAmount;
 }
+
+
