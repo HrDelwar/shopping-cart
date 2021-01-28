@@ -26,7 +26,7 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button id="iphone-decrement-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="iphone-items-count" type="text" class="form-control text-center" value="1">
+                           <input onkeyup="inputItemCalculate(event)" id="iphone-items-count" type="text" class="form-control text-center" value="1">
                            <button id="iphone-increment-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$<span id="phone-price">1219</span> </h5>
@@ -44,7 +44,7 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button id="cover-decrement-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="cover-items-count" type="text" class="form-control text-center" value="1">
+                           <input onkeyup="inputItemCalculate(event)" id="cover-items-count" type="text" class="form-control text-center" value="1">
                            <button id="cover-increment-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
@@ -65,7 +65,7 @@
 
                      <div class="col-md-4 status">
                         <h5>$<span id="subtotal-amount">1,278</span></h5>
-                        <h5>$<span id="tex-amount">0</span></h5>
+                        <h5>$<span id="tex-amount">64</span></h5>
                         <h5>$<span id="total-amount">1,278</span></h5>
                      </div>
                   </div>
